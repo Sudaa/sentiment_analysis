@@ -1,0 +1,16 @@
+dataset:
+  name: "imdb"
+  split: "train"
+
+model:
+  output_dir: "sentiment_svm_model"
+  kernel: "linear"
+  c: 1.0   #regularization parqameter
+
+training:
+  test_size: 0.2
+  random_state: 42 
+
+huggingface:
+  username: "TheAang"
+  repo_name: "sentiment_analysis_svm"
