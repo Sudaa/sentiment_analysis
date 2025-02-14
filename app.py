@@ -4,11 +4,17 @@ import joblib
 import huggingface_hub
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
+import yaml
+
+# Load config
+with open("config.yaml", "r") as file:
+    config = yaml.safe_load(file)
 
 # Load the model and vectorizer from Hugging Face Hub
-REPO_NAME = "TheAang/sentiment_analysis_svm"
-MODEL_PATH = "svm_model.joblib"
-VECTORIZER_PATH = "vectorizer.joblib"
+REPO_NAME = f"{config['huggingface']['username']}/{config['huggingface']['repo_name']}"
+MODEL_PATH = "{config['model']['output_dir']}/svm_model.joblib"
+VECTORIZER_PATH = "{config['model']['output_dir']}/vectorizer.joblib"
+
 
 # Download model & vectorizer
 huggingface_hub.hf_hub_download(repo_id=REPO_NAME, filename=MODEL_PATH, local_dir=".")
